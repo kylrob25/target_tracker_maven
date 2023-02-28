@@ -1,6 +1,7 @@
 package me.krob.tracker;
 
 import lombok.Getter;
+import me.krob.frame.LogHistoryForm;
 import me.krob.storage.DatabaseManager;
 
 @Getter
