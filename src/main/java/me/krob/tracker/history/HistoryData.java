@@ -13,12 +13,23 @@ public class HistoryData {
 
     private int userId;
 
-    // Could store Enum ordinals instead
-    private String processName; // e.g: cutting, marking, auditing
-    private String processType; // e.g: leather, paper, wood
-
     private Date date;
 
     private int amount;
     private Map<Integer, HourlyData> hourlyDataMap;
+
+    public void createHourlyData(int hour, int amount, String jobName) {
+        hourlyDataMap.computeIfAbsent(hour, h -> {
+           HourlyData hourlyData = new HourlyData();
+           hourlyData.setHistoryId(id);
+           hourlyData.setHour(h);
+           hourlyData.setAmount(amount);
+           hourlyData.setJobName(jobName);
+           return hourlyData;
+        });
+    }
+
+    public boolean contains(int hour) {
+        return hourlyDataMap.containsKey(hour);
+    }
 }

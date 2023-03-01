@@ -1,10 +1,16 @@
 package me.krob.tracker.history;
 
+import lombok.RequiredArgsConstructor;
 import me.krob.storage.DAO;
+import me.krob.storage.DatabaseManager;
+import me.krob.tracker.Tracker;
 
 import java.util.Collection;
 
+@RequiredArgsConstructor
 public class HistoryDAO implements DAO<HistoryData> {
+    private final DatabaseManager databaseManager;
+
     public void load() {
 
     }

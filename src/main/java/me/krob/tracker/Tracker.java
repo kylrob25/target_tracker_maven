@@ -9,9 +9,9 @@ public class Tracker {
     private final DatabaseManager databaseManager;
 
     public Tracker() {
-        databaseManager = new DatabaseManager();
-        databaseManager.loadDriver();
+        databaseManager = new DatabaseManager(this);
+        databaseManager.load();
 
-        new LogHistoryForm().setVisible(true);
+        new LogHistoryForm(this).setVisible(true);
     }
 }

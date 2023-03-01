@@ -3,6 +3,7 @@ package me.krob.tracker.job;
 import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import me.krob.storage.DAO;
+import me.krob.storage.DatabaseManager;
 import me.krob.tracker.Tracker;
 
 import java.sql.Connection;
@@ -16,10 +17,10 @@ public class JobDAO implements DAO<Job> {
     private final Map<Integer, Job> jobById = Maps.newHashMap();
     private final Map<String, Job> jobByName = Maps.newHashMap();
 
-    private final Tracker tracker;
+    private final DatabaseManager databaseManager;
 
     public void load() {
-        try (Connection connection = tracker.getDatabaseManager().newConnection();
+        try (Connection connection = databaseManager.newConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM Jobs")) {
             try (ResultSet resultSet = statement.getResultSet()) {
                 int id = resultSet.getInt("id");
